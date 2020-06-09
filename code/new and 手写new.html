@@ -30,17 +30,19 @@
     }
 
     function _new(fn,...args) {
-      // let obj = Object.create(fn.prototype) //fn.prototype代表 用当前对象的原型去创建
-
-      let obj = {};
-      obj.__proto__ = fn.prototype ;
       console.log(args)
+
+      let obj = Object.create(fn.prototype) //fn.prototype代表 用当前对象的原型去创建
+      // let obj = {};
+      // obj.__proto__ = fn.prototype ;
+      console.log('obj',obj) //
       let rel = fn.apply(obj,args);
-      console.log(obj) //null
       console.log(rel)
       console.log(Object.prototype)
       console.log(rel instanceof Object)
       // 优先返回构造函数返回的对象 正常规定,如果fn返回的是null或undefined(也就是不返回内容),我们返回的是obj,否则返回rel
+
+      
       return rel instanceof Object ? rel :obj
     }
 
