@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        /**
+         * 1.定义 每个函数都包含两个非继承而来的方法 call() 和 apply()
+         *   call和apply可以用来重新定义函数的执行环境，也就是this的指向；call和apply都是为了改变某个函数运行时
+         *   的context，即上下文而存在的，换句话说，就是为了改变函数体内部this的指向。
+         *  
+         * 2.相同点：
+         *   call()和apply()方法的相同点就是这两个方法的作用是一样的。都是在特定的作用域中调用函数，等于设置函
+         *   数体内this对象的值，以扩充函数赖以运行的作用域。一般来说，this总是指向调用某个方法的对象，但是使用
+         *   call()和apply()方法时，就会改变this的指向   
+         * 
+         * 3.不同点
+         *   A. apply()方法接收两个参数，一个是函数运行的作用域（this），另一个是参数数组。
+         *   B. call()方法不一定接受两个参数，第一个参数也是函数运行的作用域（this），但是传递给函数的参数必须列
+         *      举出来。
+         * 
+         * 4.用法 
+         *   因为Math.max参数里面不支持Math.max([param1,param2])，也就是数组，但是它支持Math.max(param1,
+         *   param2,param3…)，所以可以根据apply的那个特点来解决：
+         */
+
+
+        // 1.
+        function setColor() {}
+        setColor = {
+            color: "red",
+            getColor: function () {
+                console.log(this.color)
+            }
+        }
+        setColor.getColor() //red
+
+        let changeColor={
+            color:"blue"
+        }
+        setColor.getColor.apply(changeColor) //blue
+
+        //2.
+        let arr = [1,2,3,4,5];
+        console.log(Math.max.apply(null,arr));//5
+        
+    </script>
+
+</body>
+
+</html>
