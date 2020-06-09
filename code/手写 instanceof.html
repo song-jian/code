@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * instanceof 
+     *    作用:运算符用来判断一个构造函数的prototype的属性指向的对象是否存在另外一个要检测对象的原型
+     *        上
+     */
+
+
+    /* 
+      1.instanceof的普通的用法，obj instanceof Object 检测Object.prototype是否存在于参数obj原型链上。Person的原型在p的原型链中
+    */
+    function Person() {};
+    let obj = new Person();
+    console.log(obj instanceof Person) //true
+    console.log(obj.__proto__.__proto__, Object.prototype)
+
+    /*
+      2.继承中判断实例是否属于父类
+    */
+    function Teacher() {}
+
+    function Student() {}
+    let T = new Teacher();
+    Student.prototype = T;
+    let S = new Student();
+    console.log(S instanceof Teacher); //true
+    console.log(S.__proto__) //Teacher()
+
+
+
+    // 手写instanceof
+
+    function instance_of(O, F) {
+      // 如果验证为基本类型数据 ，直接返回false
+      const baseType = ["string", 'number', 'undefined', 'boolend', 'symbol'];
+      if (baseType.includes(typeof O)) {
+        return false
+      }
+
+      // 取F的prototype
+      let FP = F.prototype;
+      O = O.__proto__;
+      while (true) {
+        if (O === null) {
+          return false
+        } else if (O === FP) {
+          return true
+        }
+       
+        O = O.__proto__
+      }
+    }
+    console.log(instance_of(S, Teacher));
+  </script>
+</body>
+
+</html>
