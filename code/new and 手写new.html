@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    /**
+     * new 的具体步骤
+     *  1.创建一个空对象 obj
+     *  2.把obj的__proto__ 指向构造函数Function的原型对象prototype，此时便建立了obj对象的原型链：
+     *    obj->Animal.prototype->Object.prototype->null
+     *  3.使用 apply，改变构造函数 this 的指向到新建的对象，这样 obj 就可以访问到构造函数中的属性
+     *    (改变this的指向，执行构造函数、传递参数,fn.apply(obj,) 或者 fn.call())
+     *  4.返回新对象
+     */
+
+    function Teacher(...params) {
+      this.params = params;
+      // return this
+    }
+
+    Teacher.prototype.showParams = function () {
+      console.log(this.params)
+    }
+
+    function _new(fn,...args) {
+      // let obj = Object.create(fn.prototype) //fn.prototype代表 用当前对象的原型去创建
+
+      let obj = {};
+      obj.__proto__ = fn.prototype ;
+      console.log(args)
+      let rel = fn.apply(obj,args);
+      console.log(obj) //null
+      console.log(rel)
+      console.log(Object.prototype)
+      console.log(rel instanceof Object)
+      // 优先返回构造函数返回的对象 正常规定,如果fn返回的是null或undefined(也就是不返回内容),我们返回的是obj,否则返回rel
+      return rel instanceof Object ? rel :obj
+    }
+
+    let _newTeacher = _new(Teacher,{name:"张三",age:12},{name:"李四",age:13})
+    _newTeacher.showParams()
+  </script>
+
+</body>
+
+</html>
