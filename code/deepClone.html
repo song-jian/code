@@ -53,7 +53,9 @@
     }
     let new_Fn = deepClone(Fn);
 
-    console.log(Object.prototype.toString.call(new Function()))
+    console.log(Object.prototype.toString.call(new Function())) // [Object Function]
+    console.log(Object.prototype.toString.call(Fn.obj)) // [Object Array]
+    console.log(Object.prototype.toString.call(Fn.obj2)) // [Object Object]
     console.log(typeof new Function())
     console.log(Fn, new_Fn);
 
@@ -67,6 +69,9 @@
     //     objClone = JSON.parse(_obj);
     //   return objClone;
     // }
+
+    console.log({}.__proto__  .constructor == Object.prototype.constructor);
+    
   </script>
 </body>
 
