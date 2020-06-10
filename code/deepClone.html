@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 深拷贝和浅拷贝
+     *   一般针对的像Object Array这样复杂的对象，简单来说，浅拷贝只是复制一层对象属性 而深拷贝则
+     *   是递归复制所有层级
+     *   
+     *  对于仅仅是复制了引用（地址），换句话说，复制了之后，原来的变量和新的变量指向同一个东西，彼此
+     *  之间的操作会互相影响，为 浅拷贝。
+     * 
+     *  而如果是在堆中重新分配内存，拥有不同的地址，但是值是一样的，复制后的对象与原来的对象是完全隔
+     *  离，互不影响，为 深拷贝
+     * 
+     */
+    function deepClone(obj) {
+      let objClone = Array.isArray(obj)?[]:{};
+      if(obj && (typeof obj === "object")){
+        for(let k in obj){
+          if(obj.hasOwnProperty(k)){
+            if(obj[k] && typeof obj[k] == "object"){
+              objClone[k] = deepClone(obj[k])
+            }else{
+              objClone[k] = obj[k]
+            }
+          }
+        }
+      }
+
+      return objClone
+    }
+
+
+    let Fn = {
+      fn: function () {
+        console.log(11)
+      },
+      obj: [1, 2, 3],
+      obj1: {},
+      obj2: {
+        age: 12,
+        fn: function () {}
+      }
+    }
+    let new_Fn = deepClone(Fn);
+
+    console.log(Object.prototype.toString.call(new Function()))
+    console.log(typeof new Function())
+    console.log(Fn, new_Fn);
+
+    console.log(typeof /abc/g)
+    console.log(deepClone(/abc/g)); //{}
+ 
+
+    //无法实现对对象中方法的深拷贝，会显示为undefined
+    // function deepClone(obj) {
+    //   let _obj = JSON.stringify(obj),
+    //     objClone = JSON.parse(_obj);
+    //   return objClone;
+    // }
+  </script>
+</body>
+
+</html>

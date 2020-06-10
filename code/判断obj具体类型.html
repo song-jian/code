@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function type(obj) {
+      let toString = Object.prototype.toString;
+      let map = {
+        '[object Boolean]': 'boolean',
+        '[object Number]': 'number',
+        '[object String]': 'string',
+        '[object Function]': 'function',
+        '[object Array]': 'array',
+        '[object Date]': 'date',
+        '[object RegExp]': 'regExp',
+        '[object Undefined]': 'undefined',
+        '[object Null]': 'null',
+        '[object Object]': 'object'
+      };
+      return map[toString.call(obj)];
+    }
+
+    console.log(type(new Date()));
+    console.log(type(new Function()));
+    console.log(type(new Array()));
+    console.log(type(new RegExp()));
+
+  </script>
+</body>
+
+</html>
