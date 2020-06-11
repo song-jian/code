@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    let dataObj = {
+      uid: "admin",
+      rid: "1",
+      fid: "2",
+      name: "小明"
+    };
+
+    let dataUrl = "http://htmlJsTest/getrequest.html?uid=admin&rid=1&fid=2&name=小明";
+
+    let url = "http://htmlJsTest/getrequest.html"
+
+    function getParams(url) {
+      let obj = {};
+      let query = url.split('?')[1];
+      let params = query.split('&');
+      params.forEach(item => {
+        let data = item.split("=")
+        obj[data[0]] = data[1]
+      })
+      return obj
+    }
+    console.log(getParams(dataUrl));
+
+
+    function getUrl(url, params) {
+      if (Object.prototype.toString.call(params) === '[object Object]') {
+        for (let k in params) {
+          url = `${url}?${k}=${params[k]}&`
+        }
+        return url.indexOf("&") > -1 ? url.slice(0, -1) : url
+      } else {
+        return url
+      }
+    }
+
+    console.log(getUrl(url, {}))
+    console.log(getUrl(url, dataObj));
+  </script>
+</body>
+
+</html>
