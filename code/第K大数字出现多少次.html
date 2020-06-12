@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        /**
+         * 1.排序
+         * 2.去重
+         * 3.找到第K大值 利用索引[k-1]
+         * 4.比较 去重后的数组length 和 k 
+         */
+        function getNum(arr, k) {
+           arr.sort((a,b)=>{return b-a});
+           console.log(arr);
+
+           let uniArr = Array.from(new Set(arr));
+
+           let target = uniArr[k-1];
+
+           let k_index = arr.indexOf(target);
+           let num;
+           if(k == uniArr.length){
+               num = arr.length - k_index;  //数组长度 - 第K值前面的长度 剩余就是第K大值长度
+           }else{
+               let next_index = arr.indexOf(uniArr[k]);
+               num = next_index - k_index;  //找到第K-1大数字的索引 减去第K值大的索引
+           }
+
+           return [target,num]
+        }
+        let arr = [1, 2, 4, 4, 4,4, 3, 3, 5];
+        console.log(...getNum(arr, 2));
+    </script>
+</body>
+
+</html>
