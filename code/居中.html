@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .out1 {
+    width: 800px;
+    height: 800px;
+    position: relative;
+    border: 1px solid red;
+
+  }
+
+  .inner1 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  .out2 {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    border: 1px solid red;
+
+  }
+
+  .inner2 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    left: 50%;
+    top: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+  }
+
+  .out3 {
+    width: 600px;
+    height: 600px;
+    position: relative;
+    border: 1px solid red;
+
+  }
+
+  .inner3 {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%)
+  }
+
+  .out4 {
+    width: 600px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid red;
+
+  }
+
+  .inner4 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid red;
+
+  }
+
+  .out5 {
+    width: 600px;
+    height: 600px;
+    display: table;
+    border: 1px solid red;
+
+  }
+
+  .inner5 {
+    display: table-cell;
+    text-align:center;
+    vertical-align:middle;
+    border: 1px solid red;
+
+  }
+</style>
+
+<body>
+  <div class="out1">
+    <div class="inner1"></div>
+  </div>
+  <div class="out2">
+    <div class="inner2">
+    </div>
+  </div>
+  <div class="out3">
+    <div class="inner3"></div>
+  </div>
+  <div class="out4">
+    <div class="inner4"></div>
+  </div>
+  <div class="out5">
+    <div class="inner5">
+      <p>11</p>
+    </div>
+  </div>
+
+</body>
+
+</html>
