@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    /**
+     * 利用队列思想
+     */
+    function maxStrNoRepeat(s) {
+      let str = "";
+      let length = 0;
+      let maxStr = "";
+      for (let i = 0; i < s.length; i++) {
+        let char = s.charAt(i);
+        let index = str.indexOf(char);
+        if (index == -1) {
+          str += char;
+          length = str.length > length ? str.length : length;
+        } else {
+          str = str.slice(index + 1) + char
+        }
+        maxStr = str.length > maxStr.length ? str : maxStr;
+      }
+
+      return [maxStr, length]
+    }
+    console.log(...maxStrNoRepeat("seewewerexcasdedewc"));
+
+
+    function maxPalindromeStr(s) {
+      let maxTmp = '';
+      let current = '';
+      for (let i = 0; i < s.length; i++) {
+        current = '';
+        for (let j = i; j < s.length; j++) {
+          current += s.charAt(j)
+          if (isPalindrome(current) && current.length > maxTmp.length) {
+            maxTmp = current
+          }
+        }
+      }
+
+      return maxTmp
+
+    }
+
+    function isPalindrome(str) {
+      let strReverse = str.split('').reverse().join('');
+      return strReverse == str;
+    }
+
+
+    console.log(maxPalindromeStr('abccbaassa'));
+    
+  </script>
+</body>
+
+</html>
