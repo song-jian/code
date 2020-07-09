@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 防抖
+        function debounce(fn, wait) {
+            var timeout = null;
+            return function () {
+                if (timeout !== null) clearTimeout(timeout);
+                timeout = setTimeout(fn, wait);
+            }
+        }
+
+        // 处理函数
+        function handle() {
+            console.log(Math.random());
+        }
+        // 触发事件
+        // window.addEventListener('resize', debounce(handle, 1000));
+
+
+        //节流
+        function throttle(fn,wait) {  
+            let flag = true;
+            return function () { 
+                if(!flag) return ;
+                flag = false;
+                setTimeout(()=>{
+                 fn.apply(this,arguments);
+                 flag = true
+                },wait)
+             }
+        }
+
+        //处理函数
+        function handle(){
+            console.log(Math.random());
+        }
+        
+        //触发事件
+        window.addEventListener("resize",throttle(handle,500))
+        
+    </script>
+</body>
+
+</html>
