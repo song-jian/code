@@ -15,7 +15,6 @@
     function maxStrNoRepeat(s) {
       let str = "";
       let length = 0;
-      let maxStr = "";
       for (let i = 0; i < s.length; i++) {
         let char = s.charAt(i);
         let index = str.indexOf(char);
@@ -25,12 +24,11 @@
         } else {
           str = str.slice(index + 1) + char
         }
-        maxStr = str.length > maxStr.length ? str : maxStr;
       }
 
-      return [maxStr, length]
+      return length
     }
-    console.log(...maxStrNoRepeat("seewewerexcasdedewc"));
+    console.log(maxStrNoRepeat("seewewerexcasdedewc"));
 
 
     function maxPalindromeStr(s) {
