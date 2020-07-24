@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    new Promise((resolve) => {
+      console.log('new Promise(macro task 1)');
+      resolve();
+    }).then(() => {
+      console.log('micro task 1');
+      setTimeout(() => {
+        console.log('setTimeout1');
+      }, 500)
+    })
+
+    setTimeout(() => {
+      console.log('setTimeout2');
+    }, 500)
+
+    console.log('========== 结束==========');
+
+
+    async function f1() {
+      await f2()
+      console.log('f1结束')
+    }
+    async function f2() {
+      await f3()
+      console.log('f2结束')
+    }
+    async function f3() {
+      console.log('f3结束')
+    }
+    f1()
+    new Promise(res => {
+      console.log('new Promise')
+      res()
+    }).then(res => {
+      console.log('promise第一个then')
+    }).then(res => {
+      console.log('promise第二个then')
+    })
+
+    //f3结束
+    //new Promise
+    //f2结束
+    //promise第一个then
+    //f1结束
+    //promise第二个then
+
+
+    // f1跟f2里面的await返回都是promise,所以我们可以转换成promise
+    async function f1() {
+      //await f2()
+      //console.log('f1结束')
+      new Promise((resolv, reject) => resolve(f2())).then(() => {
+        console.log('f1结束')
+      })
+    }
+    async function f2() {
+      //await f3()
+      //console.log('f2结束')
+      new Promise((resolv, reject) => resolve(f3())).then(() => {
+        console.log('f2结束')
+      })
+    }
+    async function f3() {
+      console.log('f3结束')
+    }
+    f1()
+    new Promise(res => {
+      console.log('new Promise')
+      res()
+    }).then(res => {
+      console.log('promise第一个then')
+    }).then(res => {
+      console.log('promise第二个then')
+    })
+
+    console.log('1');
+
+    setTimeout(function () {
+      console.log('2');
+      Promise.resolve().then(function () {
+        console.log('3');
+      })
+      new Promise(function (resolve) {
+        console.log('4');
+        resolve();
+      }).then(function () {
+        console.log('5')
+      })
+    })
+    Promise.resolve().then(function () {
+      console.log('6');
+    })
+    new Promise(function (resolve) {
+      console.log('7');
+      resolve();
+    }).then(function () {
+      console.log('8')
+    })
+
+    setTimeout(function () {
+      console.log('9');
+      Promise.resolve().then(function () {
+        console.log('10');
+      })
+      new Promise(function (resolve) {
+        console.log('11');
+        resolve();
+      }).then(function () {
+        console.log('12')
+      })
+    })
+  </script>
+</body>
+
+</html>
