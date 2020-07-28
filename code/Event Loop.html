@@ -21,7 +21,7 @@
 
     setTimeout(() => {
       console.log('setTimeout2');
-    }, 500)
+    }, 100)
 
     console.log('========== 结束==========');
 
@@ -59,14 +59,14 @@
     async function f1() {
       //await f2()
       //console.log('f1结束')
-      new Promise((resolv, reject) => resolve(f2())).then(() => {
+      new Promise((resolve, reject) => resolve(f2())).then(() => {
         console.log('f1结束')
       })
     }
     async function f2() {
       //await f3()
       //console.log('f2结束')
-      new Promise((resolv, reject) => resolve(f3())).then(() => {
+      new Promise((resolve, reject) => resolve(f3())).then(() => {
         console.log('f2结束')
       })
     }
