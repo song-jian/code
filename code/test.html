@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Fun() {
+
+        }
+
+        let a = Fun();
+        console.log(typeof Fun);
+
+        console.log(a);
+        let b = new Fun();
+        console.log(Fun.prototype);
+
+
+        var arr = [1, 2, 3];
+        var arr1 = arr;
+        arr1[0] = 0;
+        console.log(arr);
+
+        var a1 = 1;
+        var b1 = a1;
+        b1 = 2;
+        console.log(a1);
+
+
+
+
+
+
+        console.log(
+            "1 2 3".replace(/\d/g, (a, b) => {
+                console.log(a, b);
+                return parseInt(a, b)
+            })
+        );
+
+        let ans = ["1", "2", "3"].map((a, b) => {
+            return parseInt(a, b)
+        });
+        console.log(ans);
+    </script>
+</body>
+
+</html>

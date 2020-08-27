@@ -21,8 +21,9 @@
     */
     function Person() {};
     let obj = new Person();
-    console.log(obj instanceof Person) //true
-    console.log(obj.__proto__.__proto__, Object.prototype)
+    // console.log(obj instanceof Person) //true
+    console.log(obj.__proto__,Person.prototype)
+    // console.log(obj.__proto__.__proto__, Object.prototype)
 
     /*
       2.继承中判断实例是否属于父类
@@ -33,8 +34,8 @@
     let T = new Teacher();
     Student.prototype = T;
     let S = new Student();
-    console.log(S instanceof Teacher); //true
-    console.log(S.__proto__) //Teacher()
+    // console.log(S instanceof Teacher); //true
+    // console.log(S.__proto__) //Teacher()
 
 
 
@@ -60,7 +61,7 @@
         O = O.__proto__
       }
     }
-    console.log(instance_of(S, Teacher));
+    // console.log(instance_of(S, Teacher));
   </script>
 </body>
 

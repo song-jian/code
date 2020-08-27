@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <script>
+  <!-- <script>
     new Promise((resolve) => {
       console.log('new Promise(macro task 1)');
       resolve();
@@ -25,7 +25,14 @@
 
     console.log('========== 结束==========');
 
+    // new Promise(macro task 1  
+    // ========== 结束========== 
+    // micro task 1  
+    // setTimeout2 
+    // setTimeout1
+  </script> -->
 
+  <!-- <script>
     async function f1() {
       await f2()
       console.log('f1结束')
@@ -46,15 +53,14 @@
     }).then(res => {
       console.log('promise第二个then')
     })
-
-    //f3结束
-    //new Promise
-    //f2结束
-    //promise第一个then
-    //f1结束
-    //promise第二个then
-
-
+    // f3结束
+    // new Promise
+    // f2结束
+    // promise第一个then
+    // f1结束
+    // promise第二个then
+  </script>
+  <script>
     // f1跟f2里面的await返回都是promise,所以我们可以转换成promise
     async function f1() {
       //await f2()
@@ -82,7 +88,9 @@
     }).then(res => {
       console.log('promise第二个then')
     })
+  </script> -->
 
+  <!-- <script>
     console.log('1');
 
     setTimeout(function () {
@@ -118,6 +126,65 @@
       }).then(function () {
         console.log('12')
       })
+    })
+
+    // 1 7 6  8 2 4 3 5 9 11  10 12
+
+  </script> -->
+
+  <!-- <script>
+    function test() {
+      console.log(1);
+      setTimeout(() => {
+        console.log(2);
+
+      }, 1000)
+
+    }
+    test();
+
+    setTimeout(function () {
+      console.log(3);
+
+    })
+
+    new Promise(function (resolve) {
+      console.log(4);
+      setTimeout(function () {
+        console.log(5);
+
+      }, 100)
+      resolve();
+    }).then(function () {
+      setTimeout(function () {
+        console.log(6);
+      }, 0)
+      console.log(7);
+    })
+
+    console.log(8);
+
+    //1 4 8 7 3 6 5 2
+
+    
+  </script>  -->
+
+  <script>
+    setTimeout(() => console.log('setTimeout1'), 0); //1宏任务
+    setTimeout(() => { //2宏任务
+      console.log('setTimeout2');
+      Promise.resolve().then(() => {
+        console.log('promise3');
+        Promise.resolve().then(() => {
+          console.log('promise4');
+        })
+        console.log(5)
+      })
+      setTimeout(() => console.log('setTimeout4'), 0); //4宏任务
+    }, 0);
+    setTimeout(() => console.log('setTimeout3'), 0); //3宏任务
+    Promise.resolve().then(() => { //1微任务
+      console.log('promise1');
     })
   </script>
 </body>
